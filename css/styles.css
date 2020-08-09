@@ -100,7 +100,6 @@ body {
 
   display: block;
   padding-top: 32px;
-  padding-bottom: 32px;
 }
 
 .site-nav a:hover,
@@ -110,6 +109,16 @@ body {
 
 .site-nav .link {
   color: var(--accent-color);
+}
+
+.site-nav .link::after {
+  content: " ";
+  display: block;
+  width: inherit;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+  margin-top: 28px;
 }
 
 .address-list {
@@ -128,18 +137,35 @@ body {
   letter-spacing: 0.02em;
   font-style: normal;
 
-  display: block;
+  display: flex;
   padding-top: 32px;
   padding-bottom: 32px;
+  margin-right: 26px;
+  align-items: center;
 }
 
-.address-list a:hover,
-.address-list a:focus {
-  color: var(--accent-color);
+.address-list a:last-child {
+  margin-right: 0;
+}
+
+.address-box .addres-icon {
+  margin-right: 10px;
+  fill: var(--primary-text-color);
 }
 
 .address-list .item + .item {
-  padding-left: 30px;
+  margin-left: 30px;
+}
+
+.address-list .item a:hover,
+.address-list .item a:focus {
+  color: var(--accent-color);
+}
+
+.address-list .item a:hover .addres-icon,
+.address-list .item a:focus .addres-icon {
+  color: var(--accent-color);
+  fill: var(--accent-color);
 }
 
 .nav-box {
@@ -151,10 +177,17 @@ body {
   height: 600px;
   text-align: center;
   padding-top: 200px;
+
+  background-image: linear-gradient(
+      rgba(47, 48, 58, 0.8) 0%,
+      rgba(47, 48, 58, 0.8) 100%
+    ),
+    url(../images/header-img.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 .hero .title {
-  background-color: rgba(47, 48, 58, 0.8);
   color: var(--accent-white-color);
   font-weight: 900;
   font-size: 44px;
@@ -205,6 +238,7 @@ body {
 .advantages .item img {
   background-color: var(--background-pinc-color);
   padding: 25px 102px;
+  border-radius: 4px;
 }
 
 .advantages .title-inf {
@@ -220,6 +254,19 @@ body {
 
 .advantages ul {
   padding: 0;
+}
+
+.advantages .advantages-icon {
+  display: inline-flex;
+  width: 270px;
+  height: 120px;
+  background-color: var(--background-pinc-color);
+}
+
+.advantages .advantages-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .subtitle {
@@ -266,22 +313,9 @@ body {
 
 .team .title {
   background-color: var(--accent-white-color);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-radius: 4px;
+
   box-sizing: border-box;
-}
-
-.team .title a {
-  width: 44px;
-  height: 44px;
-  border-radius: 100%;
-}
-
-.team .title img:hover,
-.team .title img:focus {
-  background-color: var(--accent-color);
 }
 
 .team ul {
@@ -318,17 +352,29 @@ body {
   margin-bottom: 24px;
 }
 
-.team .link-soc a {
-  display: block;
-  width: 44px;
-  height: 44px;
-  border-radius: 100%;
-  padding: 12px;
-}
-
 .team .link-soc a:hover,
 .team .link-soc a:focus {
   background-color: var(--accent-color);
+}
+
+.team .social-icon {
+  fill: var(--primary-text-color);
+}
+
+.team .link-soc a:hover .social-icon,
+.team .link-soc a:focus .social-icon {
+  background-color: var(--accent-color);
+  fill: var(--accent-white-color);
+}
+
+.team .link-soc a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 12px;
 }
 
 .team .container .subject {
@@ -396,12 +442,17 @@ body {
   background: rgba(255, 255, 255, 0.1);
   width: 44px;
   height: 44px;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
-.connect .connect-box .item img {
-  display: block;
-  padding: 12px;
+.connect .connect-box .item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect .connect-box .item .connect-icon {
+  fill: var(--accent-white-color);
 }
 
 .connect .connect-box .item:hover,
@@ -411,10 +462,6 @@ body {
 
 .connect .connect-box .item:not(:last-child) {
   margin-right: 10px;
-}
-
-.connect .connect-box .item a {
-  align-items: center;
 }
 
 .subskriber {
@@ -512,15 +559,40 @@ address .maps {
   margin-bottom: 0;
 }
 
-.clients ul {
+.clients .client-box {
   display: flex;
   justify-content: space-between;
 }
 
-.clients ul .item {
+.clients-link {
+  display: inline-flex;
   width: 170px;
   height: 90px;
-  padding: 20px 63px;
+  justify-content: center;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  align-items: center;
+  border-radius: 4px;
+  fill: var(--primary-text-color);
+}
+
+.clients-link:hover,
+.clients-link:focus {
+  fill: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.client-box .item .client-link {
+  display: block;
+  width: 170px;
+  height: 90px;
+}
+
+.client-box .item {
+  border-radius: 4px;
+}
+
+.client-box .item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
